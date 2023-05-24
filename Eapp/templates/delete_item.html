@@ -8,7 +8,7 @@
 {% block content %}
   <h1>Delete Item</h1>
   <p>Are you sure you want to delete the item "{{CartItem.product }}"?</p>
- <form method="POST" action="{% url 'delete_item' CartItem.id %}">
+ <form method="POST" action=""  enctype="multipart/form-data">
     {% csrf_token %}
     <input type="submit" value="Delete">
   </form>

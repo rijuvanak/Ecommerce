@@ -10,8 +10,8 @@ urlpatterns = [
 
     path('users/', views.users, name="users"),
 
-    path('cart/edit/<int:CartItem_id>/', views.edit_item, name='edit_item'),
-    path('cart/delete/<int:CartItem_id>/',views. delete_item, name='delete_item'),
+    path('edit_item/<int:CartItem_id>/', views.edit_item, name='edit_item'),
+    path('delete/<int:CartItem_id>/',views. delete_item, name='delete_item'),
 
     path('dashboardmain/', views.dashboardmain, name="dashboardmain"),
 

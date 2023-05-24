@@ -115,8 +115,6 @@ def logout(request):
 
 
 @auth_user
-
-
 def cartlist(request):
     cart_items = CartItem.objects.all()
     return render(request, 'cartlist.html', {'cart_items': cart_items})
@@ -125,17 +123,24 @@ def cartlist(request):
 from django.shortcuts import render, redirect
 from .models import CartItem
 
+
+@auth_user
 def edit_item(request,CartItem_id):
     cart_item = CartItem.objects.get(id=CartItem_id)
 
     if request.method == 'POST':
-        cart_item.product = request.POST['product']
-        cart_item.quantity = request.POST['quantity']
+        product = request.POST.get('product')
+        quantity = request.POST.get('quantity')
+
+        cart_item.product.name = product
+        cart_item.quantity = quantity
         cart_item.save()
-        return redirect('cart_list')
+        return redirect('cartlist')
 
     return render(request, 'edit_item.html', {'cart_item': cart_item})
 
+
+@auth_user
 def delete_item(request, CartItem_id):
     cart_item = CartItem.objects.get(id=CartItem_id)
 

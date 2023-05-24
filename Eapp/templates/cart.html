@@ -7,6 +7,7 @@
 {% endblock %}
 {% block content %}
 <h1>Your Cart</h1>
+
 {% for cart_item in cart_items %}
   <div class="cart-item">
     <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.name }}">
@@ -20,7 +21,7 @@
 {% endfor %}
 
 {% if cart_items %}
-  <p>Total Amount: <span id="totalAmount">{{ total_amount }}</span></p>
+  <h1>Total Amount: <span id="totalAmount">{{ total_amount }}</span></h1>
 {% endif %}
 
 

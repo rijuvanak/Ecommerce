@@ -30,7 +30,7 @@
             <td>{{ cart_item.product.name }}</td>
             <td>{{ cart_item.quantity }}</td>
             <td>
-              <a href="{% url 'edit_item' cart_item.id %}">Edit</a>
+              <a href="{% url 'edit_item' cart_item.id %}">Edit or Add</a>
               <a href="{% url 'delete_item' cart_item.id %}">Delete</a>
             </td>
           </tr>
