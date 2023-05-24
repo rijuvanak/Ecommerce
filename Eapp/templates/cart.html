@@ -1,0 +1,41 @@
+
+{% extends 'dashboard.html' %}
+{% block style %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+<h1>Your Cart</h1>
+{% for cart_item in cart_items %}
+  <div class="cart-item">
+    <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.name }}">
+    <p>{{ cart_item.product.name }}</p>
+    <p>Quantity: {{ cart_item.quantity }}</p>
+    <p>Price: {{ cart_item.product.price }}</p>
+    <button onclick="removeItem('{{ cart_item.id }}', {{ cart_item.product.price }})">Remove</button>
+  </div>
+{% empty %}
+  <p>Your cart is empty.</p>
+{% endfor %}
+
+{% if cart_items %}
+  <p>Total Amount: <span id="totalAmount">{{ total_amount }}</span></p>
+{% endif %}
+
+
+
+{% endblock %}
+{% block script %}
+<script>
+
+function removeItem(cartItemId, itemPrice) {
+    // Make an AJAX request or perform necessary logic to remove the item from the cart
+    // Subtract the item price from the total amount
+    var totalAmountElement = document.getElementById('totalAmount');
+    var totalAmount = parseFloat(totalAmountElement.innerText);
+    totalAmount -= itemPrice;
+    totalAmountElement.innerText = totalAmount.toFixed(2); // Update the total amount on the page
+  }
+</script>
+{% endblock %}
